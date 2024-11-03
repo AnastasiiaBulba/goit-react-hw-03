@@ -1,6 +1,3 @@
-// import { useState } from "react";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import { useState } from "react";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
@@ -10,15 +7,24 @@ import "./App.css";
 
 const App = () => {
   const [contacts, setContacts] = useState(contactsData);
+  const [filter, setFilter] = useState("");
 
   //   console.log(contacts);
 
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
-    <div>
+    <div className="containerApp">
       <h1>Phonebook</h1>
       <ContactForm />
-      <SearchBox />
-      <ContactList contacts={contacts} />
+      <SearchBox value={filter} onChange={handleFilterChange} />
+      <ContactList contacts={filteredContacts} />
     </div>
   );
 };
