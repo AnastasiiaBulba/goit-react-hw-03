@@ -1,9 +1,27 @@
 // import { useState } from "react";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
+import { useState } from "react";
+import ContactForm from "./components/ContactForm/ContactForm";
+import ContactList from "./components/ContactList/ContactList";
+import SearchBox from "./components/SearchBox/SearchBox";
+import contactsData from "./components/Contact/contact.json";
 import "./App.css";
 
-function App() {}
+const App = () => {
+  const [contacts, setContacts] = useState(contactsData);
+
+  //   console.log(contacts);
+
+  return (
+    <div>
+      <h1>Phonebook</h1>
+      <ContactForm />
+      <SearchBox />
+      <ContactList contacts={contacts} />
+    </div>
+  );
+};
 
 export default App;
 
